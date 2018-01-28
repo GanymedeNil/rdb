@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"encoding/base64"
 
-	"github.com/cupcake/rdb"
+	"github.com/GanymedeNil/rdb"
 	. "gopkg.in/check.v1"
 )
 

@@ -6,7 +6,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/cupcake/rdb"
+	"github.com/GanymedeNil/rdb"
 	. "gopkg.in/check.v1"
 )
 
@@ -179,6 +179,15 @@ func (s *DecoderSuite) TestRDBv7(c *C) {
 	c.Assert(z[0], Equals, "bar")
 	c.Assert(z[1], Equals, "baz")
 	c.Assert(z[2], Equals, "boo")
+}
+
+func (s *DecoderSuite) TestRDBv8(c *C){
+	r := decodeRDB("rdb_version_8_with_64b_length_and_scores")
+	c.Assert(r.dbs[0]["foo"], Equals, "bar")
+	z := r.dbs[0]["bigset"].(map[string]float64)
+	c.Assert(len(z), Equals, 1000)
+	c.Assert(z["finalfield"],Equals,2.718)
+
 }
 
 func (s *DecoderSuite) TestDumpDecoder(c *C) {
